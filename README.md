@@ -1,4 +1,4 @@
-Borut Pahor
+Regina Blagotinšek
 Ivan Vidav
 Matija Pretnar
 
