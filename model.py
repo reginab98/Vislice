@@ -32,7 +32,7 @@ class Igra:
     def poraz(self):
         return self.stevilo_napak() > STEVILO_DOVOLJENIH_NAPAK
 
-    def špravilni_del_gesla(self):
+    def pravilni_del_gesla(self):
         izpis = ''
         for crka in self.geslo:
             if crka in self.pravilne_crke():
@@ -61,7 +61,7 @@ class Igra:
                     return NAPACNA_CRKA
 
 bazen_besed = []
-with open('besede.txt') as f:
+with open('besede.txt', encoding = 'utf-8') as f:
     for vrstica in f:
         bazen_besed.append(vrstica.strip()) #strip pobere ven vse presledke, tabulatorje, nove vrstice.. white space
 

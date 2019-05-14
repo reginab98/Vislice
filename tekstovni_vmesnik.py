@@ -8,7 +8,7 @@ Ugibaš še {stevilo}-krat.
 
 ==========================""".format(geslo=igra.pravilni_del_gesla(),
 napacne_crke=igra.nepravilni_ugibi(), 
-stevilo=model.STEVILO_DOVOLJENIH_NAPAK - igra.stevilo_napak())
+stevilo=model.STEVILO_DOVOLJENIH_NAPAK - igra.stevilo_napak()+1)
 
 def izpis_zmage(igra):
     return "Bravo!"
