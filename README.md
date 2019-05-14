@@ -1,4 +1,4 @@
-Regina Blagotinšek
+Marjan Šarec
 Ivan Vidav
 Matija Pretnar
 
