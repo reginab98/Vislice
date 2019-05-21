@@ -18,15 +18,16 @@
       </tr>
       <tr>
           <td>
-              <img src = "../img/{{igra.stevilo_napak()}}.jpg"alt="obesanje">
+              <img src = "../../img/{{igra.stevilo_napak()}}.jpg"alt="obesanje">
           </td>
       </tr>
   </table>
 
   <img src="img/10.jpg" alt="obesanje">
 
-  <form action="/igra/" method="post">
-    <button type="submit">Nova igra</button>
+  <form action="/igra/{{id_igre}}/" method="post">
+    Črke: <input type ="text" name="crka">
+    <button type="submit">Pošlji ugib</button>
   </form>
 </body>
 
