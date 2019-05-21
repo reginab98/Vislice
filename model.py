@@ -1,9 +1,11 @@
+import random
 STEVILO_DOVOLJENIH_NAPAK = 10
 
 PRAVILNA_CRKA = '+'
 PONOVLJENA_CRKA = 'O'
 NAPACNA_CRKA = '-'
 
+ZACETEK = 'S'
 ZMAGA = 'W'
 PORAZ = 'X'
 
@@ -69,6 +71,30 @@ def nova_igra():
     import random
     izbrana_beseda = random.choice(bazen_besed)
     return Igra(izbrana_beseda)
+
+class Vislice:
+    def __init__(self):
+        self.igre = {}
+        
+    def prost_id_igre(self):
+        return len(self.igre)
+
+    def nova_igra(self):
+        id = self.prost_id_igre()
+        igra = nova_igra()
+        self.igre[id] = (igra, ZACETEK)
+
+    def ugibaj(self, id_igre, crka):
+        igra, stanje = self.igre[id_igre]
+        novo_stanje = igra.ugibaj(crka)
+        self.igre[id_igre] = (igra, novo_stanje)
+
+
+
+vislice = Vislice()
+
+
+
 
 
 
