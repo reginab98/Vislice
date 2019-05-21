@@ -83,13 +83,14 @@ class Vislice:
         id = self.prost_id_igre()
         igra = nova_igra()
         self.igre[id] = (igra, ZACETEK)
+        return id
 
     def ugibaj(self, id_igre, crka):
         igra, stanje = self.igre[id_igre]
         novo_stanje = igra.ugibaj(crka)
         self.igre[id_igre] = (igra, novo_stanje)
 
-
+## {{ {{
 
 vislice = Vislice()
 
