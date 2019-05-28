@@ -26,7 +26,7 @@ def index():
 def slike(ime):
     return bottle.static_file(ime, root = 'img') 
 
-@bottle.get('/igra/')
+@bottle.post('/igra/') #post spreminja stanje, get pa ne
 def nova_igra():
     id = vislice.nova_igra()
     bottle.redirect('/igra/{0}/'.format(id))

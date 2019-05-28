@@ -1,3 +1,5 @@
+% import model
+
 <!DOCTYPE html>
 <html>
 
@@ -25,10 +27,19 @@
 
   <img src="img/10.jpg" alt="obesanje">
 
+  
+
+% if stanje == model.ZMAGA:
+  <h1>Bravo!</h1>
+% elif stanje == model.PORAZ:
+<h2>Žal ni šlo!</h2>
+% else:
   <form action="/igra/{{id_igre}}/" method="post">
     Črke: <input type ="text" name="crka">
     <button type="submit">Pošlji ugib</button>
   </form>
+%end
+
 </body>
 
 </html>
