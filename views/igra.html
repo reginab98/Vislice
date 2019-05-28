@@ -1,15 +1,5 @@
+%rebase('base.html')
 % import model
-
-<!DOCTYPE html>
-<html>
-
-<body>
-
-  <h1>Vislice</h1>
-  <blockquote>
-    Vislice so najboljša igra za preganjanje dolgčasa (poleg tetrisa).
-    <small>Študentje</small>
-  </blockquote>
 
   <table>
       <tr>
@@ -31,15 +21,17 @@
 
 % if stanje == model.ZMAGA:
   <h1>Bravo!</h1>
+  <form action="/nova_igra/" method="post">
+    <button type="submit">Nova igra</button>
+</form>
 % elif stanje == model.PORAZ:
 <h2>Žal ni šlo!</h2>
+<form action="/nova_igra/" method="post">
+  <button type="submit">Nova igra</button>
+</form>
 % else:
-  <form action="/igra/{{id_igre}}/" method="post">
-    Črke: <input type ="text" name="crka">
+  <form action="/igra/" method="post">
+    Črke: <input type ="text" name="crka", autofocus=true>
     <button type="submit">Pošlji ugib</button>
   </form>
 %end
-
-</body>
-
-</html>

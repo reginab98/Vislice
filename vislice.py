@@ -1,6 +1,8 @@
 import bottle
 import model
 
+vislice = model.Vislice('stanje.json')
+
 vislice = model.Vislice()
 #id = vislice.nova_igra()
 #igra, stanje = vislice.igre[id]
@@ -26,25 +28,29 @@ def index():
 def slike(ime):
     return bottle.static_file(ime, root = 'img') 
 
-@bottle.post('/igra/') #post spreminja stanje, get pa ne
-def nova_igra():
-    id = vislice.nova_igra()
-    bottle.redirect('/igra/{0}/'.format(id))
+@bottle.post('/nova_igra/') #delamo piškotek
+def nova_igra_2():
+    id_igre = vislice.nova_igra()
+    bottle.response.set_cookie('id_igre', str(id_igre), path='/')
+    bottle.redirect('/igra/')
 
-@bottle.get('/igra/<id_igre:int>/')
-def pokazi_igro(id_igre):
+@bottle.get('/igra/')
+def pokazi_igro_2():
+    id_igre = int(bottle.request.get_cookie('id_igre'))
     igra, stanje = vislice.igre[id_igre]
     return bottle.template('igra.html', id_igre=id_igre, igra=igra, stanje=stanje)
 
-@bottle.post('/igra/<id_igre:int>/')
-def ugibaj(id_igre):
+@bottle.post('/igra/')
+def ugibaj_2():
+    id_igre = int(bottle.request.get_cookie('id_igre'))
     crka = bottle.request.forms.getunicode('crka')
     vislice.ugibaj(id_igre, crka)
-    bottle.redirect('/igra/{0}/'.format(id_igre))
+    bottle.redirect('/igra/')
     print(crka)
-
-
-
-
+#post spreminja stanje, get pa ne
 bottle.run(reloader=True, debug=True)
+
+
+
+
 

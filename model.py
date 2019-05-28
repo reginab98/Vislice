@@ -1,4 +1,5 @@
 import random
+import json
 STEVILO_DOVOLJENIH_NAPAK = 10
 
 PRAVILNA_CRKA = '+'
@@ -12,9 +13,9 @@ PORAZ = 'X'
 #KONSTANTE PISEMO Z VELIKIMI CRKAMI.
 
 class Igra:
-    def __init__(self, geslo, crke=[]):
+    def __init__(self, geslo, crke=None):
         self.geslo = geslo.upper()
-        self.crke = crke
+        self.crke = crke if crke is not None else []
 
     def pravilne_crke(self):
         return [crka for crka in self.crke if crka in self.geslo]
@@ -61,7 +62,7 @@ class Igra:
                     return PRAVILNA_CRKA
                 elif velika_crka in self.napacne_crke():
                     return NAPACNA_CRKA
-
+    
 bazen_besed = []
 with open('besede.txt', encoding = 'utf-8') as f:
     for vrstica in f:
@@ -70,9 +71,17 @@ with open('besede.txt', encoding = 'utf-8') as f:
 def nova_igra():
     import random
     izbrana_beseda = random.choice(bazen_besed)
-    return Igra(izbrana_beseda)
+    return Igra(izbrana_beseda)     
+
 
 class Vislice:
+
+    def __init__(self, datoteka_s_stanjem):
+        self.igre = dict()
+        self.datoteka_s_stanjem = datoteka_s_stanjem
+        self.nalozi_igre_iz_datoteke =  nalozi_igre_iz_datoteke
+
+     
     def __init__(self):
         self.igre = {}
         
@@ -93,6 +102,27 @@ class Vislice:
 ## {{ {{
 
 vislice = Vislice()
+
+
+    def nalozi_igre_iz_datoteke(self):
+        with open(self.datoteka_s_stanjem) as f:
+            igre = json.load(f)
+            self.igre = {}
+            for id_igre, vrednost in igre.items():
+                self.igre[id_igre] = (Igra(vrednosti['geslo']),crke=vrednosti['crke'] vrednosti['poskus'])
+    
+    def zapisi_igre_v_datoteke(self):
+        with open(self.datoteka_s_stanjem, 'w') as f:
+            igre = {}
+            for id_igre, (igra, poskus) in self.igre.items():
+                igre[id_igre] = {'geslo': igra.geslo, 'crke': igra.crke, 'poskus': poskus}
+            json.dump(igre, f)
+
+ 
+
+
+
+
 
 
 
